@@ -1,8 +1,10 @@
-# 🎨 hello-gui — Go + Fyne → GitHub Releases
+# hello-gui
 
-Учебное desktop-приложение на Go с библиотекой [Fyne](https://fyne.io/). GitHub Actions проверяет код и тесты, затем по тегу версии собирает нативные приложения под Linux, macOS и Windows.
+[![CI](https://github.com/anitouchq/hello-gui/actions/workflows/ci.yml/badge.svg)](https://github.com/anitouchq/hello-gui/actions)
 
-## Что умеет приложение
+Учебное desktop-приложение на Go с библиотекой [Fyne](https://fyne.io/). GitHub Actions проверяет код и тесты, а по тегу версии собирает приложения под Linux, macOS и Windows.
+
+## Возможности приложения
 
 - Ввод имени и вывод приветствия.
 - Отображение версии, переданной из Git-тега при release-сборке.
@@ -14,9 +16,9 @@
 - `gofmt` — проверка форматирования;
 - `go vet ./...` — статический анализ;
 - `go test ./... -v` — unit-тесты логики;
-- `go build` — smoke-build GUI приложения.
+- `go build` — проверочная сборка GUI.
 
-Для Linux runner workflow устанавливает системные OpenGL/X11/Wayland зависимости. Fyne использует CGO, поэтому релизные бинарники собираются на нативных runner'ах, а не обычной Go cross-compilation.
+Fyne использует CGO и системные графические библиотеки. Поэтому релизные бинарники собираются на нативных runner'ах под каждую ОС.
 
 ## Release matrix
 
@@ -33,28 +35,35 @@ git tag v1.0.0
 git push origin v1.0.0
 ```
 
-Workflow сначала запускает CI. Затем три нативных runner'а параллельно собирают приложение, загружают бинарники как artifacts, а отдельный job создаёт GitHub Release.
+После CI три runner'а параллельно собирают приложения, загружают бинарники как artifacts, а отдельный job создаёт [GitHub Release](https://github.com/anitouchq/hello-gui/releases).
 
 ## Локальная сборка
 
-Требуется Go 1.27+, GCC и системные графические библиотеки Fyne.
+Требуются Go 1.27+, GCC и системные графические библиотеки Fyne.
 
-Ubuntu/Debian:
+Для Ubuntu/Debian:
 
 ```bash
 sudo apt-get install gcc libgl1-mesa-dev xorg-dev libwayland-dev libxkbcommon-dev
-```
-
-Далее:
-
-```bash
-go mod tidy
 go test ./... -v
 go run .
 ```
 
-## Permissions
+## Структура проекта
 
-Только release job использует `contents: write` для публикации GitHub Release через встроенный `GITHUB_TOKEN`.
+| Файл или каталог | Назначение |
+|---|---|
+| `.github/workflows/ci.yml` | Проверки, матричная сборка и публикация Release |
+| `main.go` | Создание окна Fyne и обработчики интерфейса |
+| `logic.go` | Логика приветствия и вычислений, отделённая от UI |
+| `logic_test.go` | Unit-тесты прикладной логики |
+| `go.mod` | Имя Go-модуля и прямые зависимости |
+| `go.sum` | Контрольные суммы зависимостей |
+| `.gitignore` | Локальные файлы, исключаемые из Git |
+
+## Результаты
+
+- [GitHub Actions](https://github.com/anitouchq/hello-gui/actions)
+- [Опубликованные релизы](https://github.com/anitouchq/hello-gui/releases)
 
 [Главный каталог CI/CD проектов](https://github.com/anitouchq/CI-CD-Pipelines)
