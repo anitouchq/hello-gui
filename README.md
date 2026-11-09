@@ -67,3 +67,33 @@ go run .
 - [Опубликованные релизы](https://github.com/anitouchq/hello-gui/releases)
 
 [Главный каталог CI/CD проектов](https://github.com/anitouchq/CI-CD-Pipelines)
+
+## Скриншоты
+
+Добавьте изображения в каталог `screenshots/`:
+
+- `screenshots/application.png` — окно приложения;
+- `screenshots/github-actions-release.png` — успешная сборка для трёх ОС;
+- `screenshots/github-release.png` — опубликованный Release с бинарниками.
+
+![Окно приложения](screenshots/application.png)
+![Сборка GitHub Actions](screenshots/github-actions-release.png)
+![Опубликованный GitHub Release](screenshots/github-release.png)
+
+## Как создать Release-сборку
+
+Release создаётся автоматически после отправки тега версии:
+
+```bash
+git checkout main
+git pull origin main
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+Workflow реагирует на `v*`: запускает тесты и проверочную сборку, затем собирает GUI нативно на Linux, macOS и Windows. После загрузки трёх бинарников отдельный job публикует GitHub Release.
+
+Для следующего релиза создай новый тег, например `v1.0.1`. Нельзя повторно использовать уже существующий тег.
+
+- [GitHub Actions](https://github.com/anitouchq/hello-gui/actions)
+- [GitHub Releases](https://github.com/anitouchq/hello-gui/releases)
