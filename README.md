@@ -66,4 +66,19 @@ go run .
 - [GitHub Actions](https://github.com/anitouchq/hello-gui/actions)
 - [Опубликованные релизы](https://github.com/anitouchq/hello-gui/releases)
 
+
+## Скриншоты
+
+### Окно desktop-приложения
+
+![Окно desktop-приложения](screenshots/application.png)
+
+### Успешная сборка для трёх ОС
+
+![Успешная сборка для трёх ОС](screenshots/github-actions-release.png)
+
+### GitHub Release с бинарными файлами
+
+![GitHub Release с бинарными файлами](screenshots/github-release.png)
+
 [Главный каталог CI/CD проектов](https://github.com/anitouchq/CI-CD-Pipelines)
