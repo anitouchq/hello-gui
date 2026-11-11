@@ -67,17 +67,17 @@ go run .
 - [Опубликованные релизы](https://github.com/anitouchq/hello-gui/releases)
 
 
-## Скриншоты
+## 📸 Скриншоты
 
-### Окно desktop-приложения
+### 1. Работающее приложение
 
-![Окно desktop-приложения](screenshots/application.png)
+![Окно Hello GUI](screenshots/application.png)
 
-### Успешная сборка для трёх ОС
+### 2. GitHub Actions — CI/CD успешно прошёл
 
-![Успешная сборка для трёх ОС](screenshots/github-actions-release.png)
+![GitHub Actions — успешная сборка](screenshots/github-actions-release.png)
 
-### GitHub Release с бинарными файлами
+### 3. GitHub Release v1.0.3 — 3 бинарника
 
 ![GitHub Release с бинарными файлами](screenshots/github-release.png)
 
